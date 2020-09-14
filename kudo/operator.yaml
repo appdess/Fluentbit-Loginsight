@@ -1,0 +1,27 @@
+apiVersion: kudo.dev/v1beta1
+name: "tkg-lint"
+operatorVersion: "0.1.0"
+appVersion: "1.7.9"
+kubernetesVersion: 1.17.0
+maintainers:
+  - name: Alexander Dess
+    email: adess@vmware.com
+url: https://kudo.dev
+tasks:
+  - name: lint-tkg-deploy
+    kind: Apply
+    spec:
+      resources:
+        - rbac.yaml
+        - configmap.yaml
+        - lint-fluent.yaml
+plans:
+  deploy:
+    strategy: serial
+    phases:
+      - name: main
+        strategy: parallel
+        steps:
+          - name: everything
+            tasks:
+              - lint-tkg-deploy

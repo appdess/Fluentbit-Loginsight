@@ -1,0 +1,5 @@
+apiVersion: kudo.dev/v1beta1
+parameters:
+  - name: bearer
+    description: Your bearer token from the console
+    default: XSAGEASDFSADFSDSADAFSD
